@@ -13,11 +13,11 @@ php artisan db:seed
 // for linking the storage directory command
 php artisan storage:link
 ```
-### username
+#### username
 admin
-### email
+#### email
 admin@laravelblog.com
-### password
+#### password
 password
 
 #### Pending Tasks
