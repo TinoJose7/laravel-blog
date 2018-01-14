@@ -1,0 +1,31 @@
+@font-face {font-family:EGGIndulekhaUni;
+        src:url('/fonts/EGGIndulekha.ttf') format('truetype');
+}
+@font-face {font-family:PanchariUni;
+        src:url('/fonts/PanchariUniN.ttf') format('truetype');
+}
+.about-us-vision-content {
+    font-family: PanchariUni;
+    text-align: justify;
+    font-size: 125%;
+}
+.about-h4 {
+	text-align: center;
+}
+
+.asteric-mandatory {
+    color: red;
+}
+.registration-page-note {
+    background-color: #3c763d;
+    margin-bottom: 5%;
+}
+.registration-page-note .cta-text{
+    text-transform: none;
+}
+#courses-heading2 {
+    margin-top: 90px;
+}
+#courses-heading3 {
+    margin-top: 90px;
+}

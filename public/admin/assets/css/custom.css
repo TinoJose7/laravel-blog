@@ -1,0 +1,20 @@
+.asteric-mandatory {
+    color: red;
+}
+
+.candidate-view-first-item {
+    border: none;
+}
+
+.view-first-item {
+    border: none;
+}
+
+.blog-post-view-image {
+    width: 50%;
+}
+
+.blog-post-edit-image {
+    width: 150px;
+    height: 100px;
+}
