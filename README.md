@@ -20,4 +20,6 @@ admin@laravelblog.com
 ### password
 password
 
-Refer to the [official documentation](http://image.intervention.io/) to learn more about Intervention Image.
+#### Pending Tasks
+Need to use Observers.<br>
+Need to use Yajra datatable package to list all the users (currently used datatables)
