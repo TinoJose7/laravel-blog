@@ -19,4 +19,4 @@ php artisan storage:link
 
 #### Pending Tasks
 Need to use Observers.<br>
-Need to use Yajra datatable package to list all the users (currently used datatables)
+Disqus Integration
