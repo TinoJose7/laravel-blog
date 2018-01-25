@@ -22,16 +22,68 @@
                         </a>
                     </div>
                     <div class="box-body">
-                        <table id="blogPostsTable" class="table table-hover table-bordered table-striped datatable" style="width:100%">
-                          <thead>
-                              <tr>
-                                  <th>Title</th>
-                                  <th>Categories</th>
-                                  <th>Status</th>
-                                  <th>Actions</th>
-                              </tr>
-                          </thead>
-                        </table>  
+                        <table id="blogPostsTable" class="table table-bordered table-striped dataTable">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Categories</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($blog_posts as $blog_post)
+                                    <tr>
+                                        <td>{{$blog_post->title}}</td>
+                                        <td>
+                                          @foreach($blog_post->categories as $category)
+                                            <span class="label label-default">
+                                                {{$category->name}}
+                                            </span>&nbsp;
+                                          @endforeach
+                                        </td>
+                                        <td>
+                                            @if(!$blog_post->is_published)
+                                                <span class="label label-default">Not Published</span>
+                                            @else
+                                                <span class="label label-success">Published</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="/posts/{{$blog_post->id}}"
+                                                class="btn btn-xs btn-info" title="View">
+                                                <i class="fa fa-search"></i>
+                                            </a>
+                                            <a href="/posts/{{$blog_post->id}}/edit"
+                                                class="btn btn-xs btn-primary" title="Edit">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                            @if(!$blog_post->is_published)
+                                              <a href="/posts/{{$blog_post->id}}"
+                                                  class="btn btn-xs btn-success changeblogPostStatus"
+                                                  data-id="{{$blog_post->id}}" title="Publish"
+                                                  data-url="/posts/change-status/{{$blog_post->id}}">
+                                                  <i class="fa fa-check"></i>
+                                              </a>
+                                            @else
+                                              <a href="/posts/{{$blog_post->id}}"
+                                                  class="btn btn-xs btn-danger changeblogPostStatus"
+                                                  data-id="{{$blog_post->id}}" title="Unpublish"
+                                                  data-url="/posts/change-status/{{$blog_post->id}}">
+                                                  <i class="fa fa-ban"></i>
+                                              </a>
+                                            @endif
+                                             <a href="/posts/{{$blog_post->id}}"
+                                                class="btn btn-xs btn-danger deleteBlogPost"
+                                                title="Delete" data-id="{{$blog_post->id}}"
+                                                data-url="/posts/{{$blog_post->id}}">
+                                                <i class="fa fa-trash-o"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -165,21 +217,6 @@
                     });
                 return false;
             });
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-          $('#blogPostsTable').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: '{{ route('post/list') }}',
-            columns: [
-            {data: 'title', name: 'title'},
-            {data: 'category', name: 'category'},
-            {data: 'is_published', name: 'is_published'},
-            {data: 'actions', name: 'actions', orderable: false, searchable: false},
-            ]
-          });
         });
     </script>
 @endpush

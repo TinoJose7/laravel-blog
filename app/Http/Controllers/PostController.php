@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DataTables;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -19,9 +20,38 @@ class PostController extends Controller
      */
     public function index()
     {
-        $blog_posts = Post::latest()->get();
+        // $blog_posts = Post::latest()->get();
 
-        return view('admin.blog.posts.index', compact('blog_posts'));
+        // return view('admin.blog.posts.index', compact('blog_posts'));
+        return view('admin.blog.posts.index');
+    }
+
+    /**
+     * Process datatables ajax request.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getPosts()
+    {
+        $categories = Post::select(['id', 'title', 'is_published', 'created_at', 'updated_at'])->latest()->get();
+
+        return DataTables::of($categories)
+            ->addColumn('is_published', function ($post) {
+                return $post->isPublished() ? '<span class="label label-success">Published</span>' : '<span class="label label-default">Not Published</span>'; 
+            })
+            ->addColumn('category', function ($post) {
+                $categories = '';
+                foreach($post->categories as $category)
+                {
+                    $categories .= ' <span class="label label-default">'.$category->name.'</span>&nbsp';
+                }
+                return $categories;
+            })
+            ->addColumn('actions', function ($post) {
+                return $post->actionButtons();
+            })
+            ->rawColumns(['is_published', 'category', 'actions'])
+            ->make(true);
     }
 
     /**

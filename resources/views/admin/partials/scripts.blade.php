@@ -13,8 +13,9 @@
 <!-- AdminLTE App -->
 <script src="/admin/dist/js/app.min.js"></script>
 <!-- DataTables -->
-<script src="/admin/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="/admin/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- <script src="/admin/plugins/datatables/jquery.dataTables.min.js"></script> -->
+<!-- <script src="/admin/plugins/datatables/dataTables.bootstrap.min.js"></script> -->
+<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 <!-- Sweet Alert-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <!-- Summernote -->
@@ -23,15 +24,15 @@
 <script src="/admin/plugins/select2/select2.full.min.js"></script>
 <script>
 $(function () {
-    $(".dataTable").DataTable({
-        "paging": true,
-        "lengthChange": true,
-        "searching": true,
-        "ordering": true,
-        "info": true,
-        "autoWidth": true,
-        "aaSorting": []
-    });
+    // $(".dataTable").DataTable({
+    //     "paging": true,
+    //     "lengthChange": true,
+    //     "searching": true,
+    //     "ordering": true,
+    //     "info": true,
+    //     "autoWidth": true,
+    //     "aaSorting": []
+    // });
     //Date picker
     $('.datepicker').datepicker({
       autoclose: true,

@@ -21,7 +21,8 @@
   <!-- Date Picker -->
   <link rel="stylesheet" href="/admin/plugins/datepicker/datepicker3.css">
   <!-- DataTables -->
-  <link rel="stylesheet" href="/admin/plugins/datatables/dataTables.bootstrap.css">
+  <!-- <link rel="stylesheet" href="/admin/plugins/datatables/dataTables.bootstrap.css"> -->
+  <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet">
   <!-- Sweet Alert -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
   <!-- Summernote -->

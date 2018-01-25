@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use DataTables;
 use App\Models\Category;
 use Illuminate\Http\Request;
+// use Yajra\Datatables\Datatables;
 use App\Http\Requests\Category\StoreCategoryRequest;
 use App\Http\Requests\Category\UpdateCategoryRequest;
 use App\Http\Requests\Category\UpdateCategoryStatusRequest;
@@ -18,9 +20,27 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $blog_categories = Category::latest()->get();
+        return view('admin.blog.categories.index');
+    }
 
-        return view('admin.blog.categories.index', compact('blog_categories'));
+    /**
+     * Process datatables ajax request.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getCategories()
+    {
+        $categories = Category::select(['id', 'name', 'status', 'created_at', 'updated_at'])->latest()->get();
+
+        return DataTables::of($categories)
+            ->addColumn('status', function ($category) {
+                return $category->isActive() ? '<span class="label label-success">Active</span>' : '<span class="label label-default">InActive</span>'; 
+            })
+            ->addColumn('actions', function ($category) {
+                return $category->actionButtons();
+            })
+            ->rawColumns(['status', 'actions'])
+            ->make(true);
     }
 
     /**

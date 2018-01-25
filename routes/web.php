@@ -20,5 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/categories', 'CategoryController');
 Route::get('/categories/change-status/{category}', 'CategoryController@changeStatus');
+Route::get('/category/list', 'CategoryController@getCategories')->name('category/list');
 Route::resource('/posts', 'PostController');
 Route::get('/posts/change-status/{post}', 'PostController@changeStatus');
+Route::get('/post/list', 'PostController@getPosts')->name('post/list');

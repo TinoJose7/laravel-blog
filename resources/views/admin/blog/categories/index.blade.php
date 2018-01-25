@@ -22,62 +22,14 @@
                         </a>
                     </div>
                     <div class="box-body">
-                        <table id="categoryTable" class="table table-bordered table-striped dataTable">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                             @foreach ($blog_categories as $category)
-
-                                    <tr>
-                                        <td>{{$category->name}}</td>
-                                        <td>
-                                            @if($category->status)
-                                               <span class="label label-success">Active</span>
-                                            @else
-                                              <span class="label label-default">InActive</span>
-                                            @endif
-                                        </td>
-
-                                        <td>
-                                            <a href="/categories/{{$category->id}}"
-                                                class="btn btn-xs btn-info" title="View">
-                                                <i class="fa fa-search"></i>
-                                            </a>
-
-
-                                            <a href="/categories/{{$category->id}}/edit"
-                                                class="btn btn-xs btn-primary" title="Edit">
-                                                <i class="fa fa-pencil"></i>
-                                            </a>
-                                             <a href="/categories/{{$category->id}}"
-                                                class="btn btn-xs btn-danger deleteCategory" title="Edit" data-id="{{$category->id}}" title="Delete"  data-url="/categories/{{$category->id}}">
-                                                <i class="fa fa-trash-o"></i>
-                                            </a>
-
-                                            @if(!$category->status)
-
-                                                  <a href="/categories/{{$category->id}}"
-                                                  class="btn btn-xs btn-success changeCategoryStatus" data-id="{{$category->id}}" title="Enable" data-url="/categories/change-status/{{$category->id}}">
-                                                  <i class="fa fa-check"></i>
-                                                  </a>
-                                            @else
-
-                                                  <a href="/categories/{{$category->id}}"
-                                                  class="btn btn-xs btn-danger changeCategoryStatus" data-id="{{$category->id}}" title="Disable"  data-url="/categories/change-status/{{$category->id}}">
-                                                  <i class="fa fa-ban"></i>
-                                                  </a>
-                                            @endif
-
-
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
+                        <table id="categoryTable" class="table table-hover table-bordered table-striped datatable" style="width:100%">
+                          <thead>
+                              <tr>
+                                  <th>Name</th>
+                                  <th>Status</th>
+                                  <th>Actions</th>
+                              </tr>
+                          </thead>
                         </table>
                     </div>
                     <!-- /.box-body -->
@@ -86,7 +38,6 @@
             </div>
             <!-- /.col -->
         </div>
-        <!-- /.row -->
     </section>
 
 @endsection
@@ -212,6 +163,20 @@
                     });
                 return false;
             });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+          $('#categoryTable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{{ route('category/list') }}',
+            columns: [
+            {data: 'name', name: 'name'},
+            {data: 'status', name: 'status'},
+            {data: 'actions', name: 'actions', orderable: false, searchable: false},
+            ]
+          });
         });
     </script>
 @endpush
