@@ -17,6 +17,4 @@ php artisan storage:link
 #### email - 'admin@laravelblog.com'
 #### password - 'password'
 
-#### Pending Tasks
-Need to use Observers.<br>
-Disqus Integration
+#### Task Completed!!
