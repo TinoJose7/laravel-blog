@@ -43,6 +43,7 @@
                         </div>
                     </div>
                 </div>
+                <div id="disqus_thread"></div>
             </div>
             <div class="col-md-4 col-md-offset-0">
                 <div class="sidebar hidden-sm hidden-xs">
@@ -94,4 +95,5 @@
             </div>
         </div>
     </section>
+
 @endsection

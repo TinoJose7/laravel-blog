@@ -124,18 +124,6 @@ class PostController extends Controller
         $destroy = $post->delete();
 
         if($destroy) {
-            if( $post->image != NULL) {
-                $isImageExistsInPath1 = file_exists( storage_path() . '/app/public/images/blog/posts/69x69/' . $post->image );
-                if($isImageExistsInPath1) {
-                    $path = storage_path('app/public/images/blog/posts/69x69/' . $post->image);
-                    $delete = \File::delete($path);
-                }
-                $isImageExistsInPath2 = file_exists( storage_path() . '/app/public/images/blog/posts/730x300/' . $post->image );
-                if($isImageExistsInPath2) {
-                    $path = storage_path('app/public/images/blog/posts/730x300/' . $post->image);
-                    $delete = \File::delete($path);
-                }
-            }
             return response()->json([
                 'status' => 'success'
             ], 200);
